@@ -1,4 +1,4 @@
-.nav-menu {
+/*.nav-menu {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -19,4 +19,4 @@
 .nav-menu a.active {
     font-weight: bold;
     color: #0066cc;
-}
+}*/

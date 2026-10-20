@@ -8,3 +8,16 @@
     margin: 0 auto;
     padding: 24px;
 }
+
+header{
+    background-color: #CBD6B1;
+}
+
+#hamburger i {
+    width: 150px;
+    color: #1F4547;
+}
+
+header img {
+    border-radius: 50%;
+}

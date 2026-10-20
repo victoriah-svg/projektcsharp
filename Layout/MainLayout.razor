@@ -1,7 +1,13 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
-    <NavMenu />
+    <header>
+        <a href="/"><img src="/Images/Logo-csharp-proj.svg" alt=""></a>
+        <div id="hamburger">
+            <i class="fa-solid fa-bars fa-5x"></i>
+        </div>
+        <NavMenu />
+    </header>
 
     <main class="main-content">
         @Body
