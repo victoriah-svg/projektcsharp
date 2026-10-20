@@ -9,4 +9,12 @@
     grid-area: 2/2/3/3;
 }
 
+/*-----------Mobilläge--------------*/
+
+@media screen and (max-width: 600px) {
+ .nav-menu {
+    display: none;
+ }
+}
+
 

@@ -28,7 +28,8 @@ header a{
 
 #hamburger {
     display: none;
-   /* grid-area: 1/2/2/3;*/
+    grid-area: 2/2/3/3;
+    justify-self: right;
 }
 
 
@@ -42,4 +43,12 @@ header img {
 header img:hover {
     opacity: 0.99;
     box-shadow: none;
+}
+
+/*-----------Mobilläge--------------*/
+
+@media screen and (max-width: 600px) {
+    #hamburger {
+        display: block;
+    }
 }
