@@ -1,3 +1,13 @@
 @page "/add"
+@using todos
 <PageTitle>Add ToDo</PageTitle>
 <h1>Lägg till ny ToDo</h1>
+<p>@Cat</p>
+<p>@myToDo.WriteToDo()</p>
+
+@code {
+    string Cat = "katten uno";
+
+  
+    ToDo myToDo = new ToDo (task: "handla", priority: 1, done: true, category: "hem och fritid");
+}
