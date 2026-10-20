@@ -1,8 +1,12 @@
 
 .nav-menu {
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
     gap: 20px;
     padding: 16px 24px;
-    background-color: #f5f5f5;
+    grid-area: 2/2/3/3;
 }
+
+
