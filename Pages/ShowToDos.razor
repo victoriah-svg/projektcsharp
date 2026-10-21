@@ -1,3 +1,30 @@
 @page "/show-ToDos"
+@using System.Reflection.Metadata
+@inject IJSRuntime JS
+@using todos
+@inject ToDoStorage Storage
 <PageTitle>Show ToDo</PageTitle>
 <h1>Dina ToDo's</h1>
+
+
+    <h3>Test av localStorage</h3>
+
+<button @onclick="Save">Spara</button>
+<button @onclick="Load">Hämta</button>
+
+<p>@message</p>
+
+@code {
+    private string message = "";
+
+    private async Task Save()
+    {
+        await Storage.Save("Hej från Blazor!");
+        message = "Värdet sparades!";
+    }
+
+    private async Task Load()
+    {
+        message = await Storage.Load() ?? "Inget värde hittades";
+    }
+}
