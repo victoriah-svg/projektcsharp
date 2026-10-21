@@ -13,7 +13,7 @@
     {
         if(todo.Category == "Hem och fritid")
         {
-             <li> <input type="checkbox" @bind="todo.Done">@todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+             <li> <input type="checkbox" @bind="todo.Done"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
              //binder värdet av checkboxen till todo.Done - ibockad är true , urbockad blir false
         }
        
@@ -26,7 +26,7 @@
     {
         if(todo.Category == "Skola")
         {
-             <li>@todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+             <li><input type="checkbox" @bind="todo.Done"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
         }
        
     }   
@@ -38,7 +38,7 @@
     {
         if(todo.Category == "Jobb")
         {
-             <li>@todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+             <li><input type="checkbox" @bind="todo.Done"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
         }
        
     }   
