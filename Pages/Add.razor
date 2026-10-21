@@ -80,7 +80,10 @@
         if (string.IsNullOrWhiteSpace(newTask))
         {
             errorMsg = "Du måste fylla i uppgift";
-        }else
+        }else if(newTask.Length > 30){
+            errorMsg = "Uppgiftsbeskrivning får inte vara längre än 30 karaktärer";
+        }
+        else
         {
             todos.Add(new ToDo { Task = newTask, Priority = newPriority , Done = false, Category = newCategory});
             newTask = ""; //rensar fältet newTask
