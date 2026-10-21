@@ -2,7 +2,7 @@
 @using todos
 <PageTitle>Add ToDo</PageTitle>
 <h1>Lägg till ny ToDo</h1>
-<p>@Cat</p>
+
 <!--<p>@myToDo.WriteToDo()</p>-->
 <!--testa lägg in input och knapp - med databinding eller eventhandler som sätter värdena -->
 
@@ -45,6 +45,7 @@
 
 
 <input @bind="newTask">
+<p class="errorMsg">@errorMsg</p>
 <select id="priority" name="priority" @bind="newPriority">
   <option value="1">1</option>
   <option value="2">2</option>
@@ -60,26 +61,32 @@
 <button @onclick="AddTodo">Add todo</button>
 
 @code {
-    string Cat = "katten uno";
+
     List<ToDo> todos = new List<ToDo>();
 
     string newTask = "";
+
+    string errorMsg = "";
     int newPriority = 1;
 
     string newCategory = "Hem och fritid";
 
-   // ToDo myToDo = new ToDo (task: "handla", priority: 1, done: true, category: "hem och fritid");
+    // ToDo myToDo = new ToDo (task: "handla", priority: 1, done: true, category: "hem och fritid");
     //Lägg till metod AddToDo som triggas när knappen klickas - men först kontrollerar att värden ej är tomma
     //just nu skriv bara ut värdena på skärmen - senare anropa save med listan av todos
 
     private void AddTodo(MouseEventArgs args)
     {
-        if (!string.IsNullOrWhiteSpace(newTask))
+        if (string.IsNullOrWhiteSpace(newTask))
+        {
+            errorMsg = "Du måste fylla i uppgift";
+        }else
         {
             todos.Add(new ToDo { Task = newTask, Priority = newPriority , Done = false, Category = newCategory});
             newTask = ""; //rensar fältet newTask
             newPriority = 1; //sätter tillbaka värdet på priority att vara 1 som default
             newCategory = "Hem och fritid"; //sätter tillbaka defaultvärde på kategori
+            errorMsg = "";
         }
 
         

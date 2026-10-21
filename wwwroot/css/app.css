@@ -73,4 +73,9 @@ body {
     opacity: 0.9;
     text-decoration: underline;
 }
+
+.errorMsg {
+    color: red;
+    font-weight: bold;
+}
     
