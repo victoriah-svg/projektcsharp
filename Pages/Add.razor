@@ -3,11 +3,85 @@
 <PageTitle>Add ToDo</PageTitle>
 <h1>Lägg till ny ToDo</h1>
 <p>@Cat</p>
-<p>@myToDo.WriteToDo()</p>
+<!--<p>@myToDo.WriteToDo()</p>-->
+<!--testa lägg in input och knapp - med databinding eller eventhandler som sätter värdena -->
+
+<h2>Hem och fritid</h2>
+<ul>
+    @foreach (var todo in todos)
+    
+    {
+        if(todo.Category == "Hem och fritid")
+        {
+             <li>@todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+        }
+       
+    }   
+</ul>
+<h2>Skola</h2>
+<ul>
+    @foreach (var todo in todos)
+    
+    {
+        if(todo.Category == "Skola")
+        {
+             <li>@todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+        }
+       
+    }   
+</ul>
+<h2>Jobb</h2>
+<ul>
+    @foreach (var todo in todos)
+    
+    {
+        if(todo.Category == "Jobb")
+        {
+             <li>@todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+        }
+       
+    }   
+</ul>
+
+
+<input @bind="newTask">
+<select id="priority" name="priority" @bind="newPriority">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+</select>
+
+<select id="category" name="category" @bind="newCategory">
+  <option value="Hem och fritid">Hem och fritid</option>
+  <option value="Jobb">Jobb</option>
+  <option value="Skola">Skola</option>
+</select>
+
+<button @onclick="AddTodo">Add todo</button>
 
 @code {
     string Cat = "katten uno";
+    List<ToDo> todos = new List<ToDo>();
 
-  
-    ToDo myToDo = new ToDo (task: "handla", priority: 1, done: true, category: "hem och fritid");
+    string newTask = "";
+    int newPriority = 1;
+
+    string newCategory = "Hem och fritid";
+
+   // ToDo myToDo = new ToDo (task: "handla", priority: 1, done: true, category: "hem och fritid");
+    //Lägg till metod AddToDo som triggas när knappen klickas - men först kontrollerar att värden ej är tomma
+    //just nu skriv bara ut värdena på skärmen - senare anropa save med listan av todos
+
+    private void AddTodo(MouseEventArgs args)
+    {
+        if (!string.IsNullOrWhiteSpace(newTask))
+        {
+            todos.Add(new ToDo { Task = newTask, Priority = newPriority , Done = false, Category = newCategory});
+            newTask = ""; //rensar fältet newTask
+            newPriority = 1; //sätter tillbaka värdet på priority att vara 1 som default
+            newCategory = "Hem och fritid"; //sätter tillbaka defaultvärde på kategori
+        }
+
+        
+    }
 }

@@ -2,7 +2,15 @@ namespace todos
 {
     public class ToDo
     {
-       public string? Task;
+        public string? Task { get; set; }
+
+       public int? Priority { get; set; }
+
+       public bool? Done { get; set; }
+
+       public string? Category { get; set; }
+
+      /* public string? Task;
 
        public int? Priority;
 
@@ -25,10 +33,10 @@ namespace todos
             if(Task == null) return "tomt värde";
             else
             {
-              return Task;  
+              return $"task: {Task} priority {Priority} Done: {Done} Category {Category}";  
             }
             
-        }
+        }*/
         
     }
 
