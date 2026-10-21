@@ -13,7 +13,8 @@
     {
         if(todo.Category == "Hem och fritid")
         {
-             <li>@todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+             <li> <input type="checkbox" @bind="todo.Done">@todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+             //binder värdet av checkboxen till todo.Done - ibockad är true , urbockad blir false
         }
        
     }   
@@ -69,6 +70,8 @@
     string errorMsg = "";
     int newPriority = 1;
 
+    bool done = false; //sätter till false för vill att done ska vara false när en todo läggs till
+
     string newCategory = "Hem och fritid";
 
     // ToDo myToDo = new ToDo (task: "handla", priority: 1, done: true, category: "hem och fritid");
@@ -85,13 +88,13 @@
         }
         else
         {
-            todos.Add(new ToDo { Task = newTask, Priority = newPriority , Done = false, Category = newCategory});
+            todos.Add(new ToDo { Task = newTask, Priority = newPriority , Done = done, Category = newCategory});
             newTask = ""; //rensar fältet newTask
             newPriority = 1; //sätter tillbaka värdet på priority att vara 1 som default
             newCategory = "Hem och fritid"; //sätter tillbaka defaultvärde på kategori
             errorMsg = "";
         }
 
-        
+        // här ska även en Save-metod anropas från Interface som definieras i localStorageSave
     }
 }
