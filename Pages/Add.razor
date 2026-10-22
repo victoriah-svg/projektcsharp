@@ -1,5 +1,6 @@
 @page "/add"
 @using todos
+@inject ToDoStorage Storage /*injicerar klassen för att kunna anropa metoder Load och Save*/
 <PageTitle>Add ToDo</PageTitle>
 <h1>Lägg till ny ToDo</h1>
 
@@ -78,7 +79,7 @@
     //Lägg till metod AddToDo som triggas när knappen klickas - men först kontrollerar att värden ej är tomma
     //just nu skriv bara ut värdena på skärmen - senare anropa save med listan av todos
 
-    private void AddTodo(MouseEventArgs args)
+    private async Task AddTodo(MouseEventArgs args)
     {
         if (string.IsNullOrWhiteSpace(newTask))
         {
@@ -89,12 +90,13 @@
         else
         {
             todos.Add(new ToDo { Task = newTask, Priority = newPriority , Done = done, Category = newCategory});
+            await Storage.Save(todos); //anropar Save från ToDoStorage som anropar async js-funktion för att spara i localStorage
             newTask = ""; //rensar fältet newTask
             newPriority = 1; //sätter tillbaka värdet på priority att vara 1 som default
             newCategory = "Hem och fritid"; //sätter tillbaka defaultvärde på kategori
             errorMsg = "";
         }
 
-        // här ska även en Save-metod anropas från Interface som definieras i localStorageSave
+        
     }
 }

@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.JSInterop; //för att kunna anropa js-fil
 
 namespace todos
@@ -10,20 +11,21 @@ namespace todos
         private readonly IJSRuntime _js = js; // primärkonstruktor
 
 
-        public async Task Save(string value)
+        public async Task Save(List<ToDo> todos)
         {
-            await _js.InvokeVoidAsync("saveData", "test", value); //anropar metod saveData från js-fil
+            string jsonString = JsonSerializer.Serialize(todos); //Serializerar till json
+            await _js.InvokeVoidAsync("saveData", "todos", jsonString); //anropar metod saveData från js-fil med json-string
         }
 
-       /* public async Task<List<ToDo>> Load()
+        public async Task<List<ToDo>> Load()
         {
-            return await _js.InvokeAsync<List<ToDo>>("getData", "test");
-        }*/
+            return await _js.InvokeAsync<List<ToDo>>("getData", "todos");
+        }
 
-        public async Task<string?> Load()
+       /* public async Task<string?> Load()
         {
             return await _js.InvokeAsync<string?>("getData", "test");
-        }
+        }*/
 
         
     }
