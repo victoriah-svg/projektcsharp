@@ -1,4 +1,5 @@
 @page "/show-ToDos"
+@using System.Data.SqlTypes
 @using System.Reflection.Metadata
 @inject IJSRuntime JS
 @using todos
@@ -13,9 +14,24 @@
 <!--<button @onclick="Load">Hämta</button>-->
 
 <p>@message</p>
+<ul>
+    
+</ul>
 
 @code {
+    // List<ToDo> todos = new List<ToDo>();
     private string message = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        List<ToDo> allToDos = await Storage.Load();
+            @foreach(ToDo todo in allToDos)
+        {
+            Console.WriteLine($"{todo.Task} {todo.Priority}");
+        }
+        
+    }
+    
 
    /* private async Task Save()
     {

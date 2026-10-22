@@ -4,4 +4,5 @@ window.saveData = function (key, value) {
 
 window.getData = function (key) {
     return localStorage.getItem(key);
+   // return JSON.parse(data);
 };
