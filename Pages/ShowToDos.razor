@@ -14,33 +14,67 @@
 <!--<button @onclick="Load">Hämta</button>-->
 
 <p>@message</p>
+<h2>Hem och fritid</h2>
 <ul>
+    @foreach (var todo in todos)
     
+    {
+        if(todo.Category == "Hem och fritid")
+        {
+             <li> <input type="checkbox" @bind="todo.Done"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+             //binder värdet av checkboxen till todo.Done - ibockad är true , urbockad blir false
+        }
+       
+    }   
+</ul>
+<h2>Skola</h2>
+<ul>
+    @foreach (var todo in todos)
+    
+    {
+        if(todo.Category == "Skola")
+        {
+             <li><input type="checkbox" @bind="todo.Done"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+        }
+       
+    }   
+</ul>
+<h2>Jobb</h2>
+<ul>
+    @foreach (var todo in todos)
+    
+    {
+        if(todo.Category == "Jobb")
+        {
+             <li><input type="checkbox" @bind="todo.Done" @onclick="changeStatus"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+        }
+       
+    }   
 </ul>
 
 @code {
     // List<ToDo> todos = new List<ToDo>();
     private string message = "";
+    List<ToDo> todos = new List<ToDo>();
 
     protected override async Task OnInitializedAsync()
     {
         List<ToDo> allToDos = await Storage.Load();
             @foreach(ToDo todo in allToDos)
         {
-            Console.WriteLine($"{todo.Task} {todo.Priority}");
+            todos.Add(new ToDo { Task = todo.Task, Priority = todo.Priority , Done = todo.Done, Category = todo.Category});
         }
-        
+
     }
-    
 
-   /* private async Task Save()
-    {
-        await Storage.Save("Hej från Blazor!");
-        message = "Värdet sparades!";
-    }*/
 
-   /* private async Task Load()
+    private void changeStatus(MouseEventArgs args)
     {
-        message = await Storage.Load() ?? "Inget värde hittades";
-    }*/
+        Console.WriteLine("Du klickade på checkboxen");
+        @foreach (ToDo todo in todos)
+        {
+            Console.WriteLine($"{todo.Task} {todo.Done}");
+        }
+        //Storage.Save(todos);
+    }
 }
