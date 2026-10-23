@@ -8,61 +8,70 @@
 <h1>Dina ToDo's</h1>
 
 
-    <h3>Test av localStorage</h3>
+<h3>Test av localStorage</h3>
 
 <!--<button @onclick="Save">Spara</button>-->
 <!--<button @onclick="Load">Hämta</button>-->
 
 <p>@message</p>
 <h2>Hem och fritid</h2>
+
 <ul>
     @foreach (var todo in todos)
     
+    
     {
-        if(todo.Category == "Hem och fritid")
+        if (todo.Category == "Hem och fritid")
         {
-             <li> <input type="checkbox" @bind="todo.Done"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
-             //binder värdet av checkboxen till todo.Done - ibockad är true , urbockad blir false
+            int index = todos.IndexOf(todo);
+
+            <li> <input type="checkbox" @bind="todo.Done">@index; @todo.Task @todo.Priority @todo.Done @todo.Category</li>
+            //binder värdet av checkboxen till todo.Done - ibockad är true , urbockad blir false
         }
        
-    }   
+    }
 </ul>
 <h2>Skola</h2>
 <ul>
     @foreach (var todo in todos)
     
     {
-        if(todo.Category == "Skola")
+        if (todo.Category == "Skola")
         {
-             <li><input type="checkbox" @bind="todo.Done"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
+            int index = todos.IndexOf(todo);
+            <li><input type="checkbox" @bind="todo.Done">@index; @todo.Task @todo.Priority @todo.Done @todo.Category</li>
         }
        
-    }   
+    }
 </ul>
 <h2>Jobb</h2>
 <ul>
     @foreach (var todo in todos)
     
     {
-        if(todo.Category == "Jobb")
+        if (todo.Category == "Jobb")
         {
-             <li><input type="checkbox" @bind="todo.Done" @onclick="changeStatus"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
-        }
+            int index = todos.IndexOf(todo);
+            <li><input type="checkbox" @bind="todo.Done" @onclick="changeStatus">@index; @todo.Task @todo.Priority @todo.Done
+                @todo.Category</li>
+            }
        
-    }   
-</ul>
+        }
+    </ul>
 
 @code {
     // List<ToDo> todos = new List<ToDo>();
     private string message = "";
     List<ToDo> todos = new List<ToDo>();
 
+    
+
     protected override async Task OnInitializedAsync()
     {
         List<ToDo> allToDos = await Storage.Load();
-            @foreach(ToDo todo in allToDos)
+        @foreach (ToDo todo in allToDos)
         {
-            todos.Add(new ToDo { Task = todo.Task, Priority = todo.Priority , Done = todo.Done, Category = todo.Category});
+            todos.Add(new ToDo { Task = todo.Task, Priority = todo.Priority, Done = todo.Done, Category = todo.Category });
         }
 
     }
