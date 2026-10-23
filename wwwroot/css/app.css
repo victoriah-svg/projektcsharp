@@ -1,4 +1,6 @@
 
+/*Google fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Limelight&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
 /*:root {
@@ -19,7 +21,17 @@ body {
 
 body {
     min-height: 100vh;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     
+}
+
+/*Typsnitt*/
+#welcomeTxt {
+    font-family: "Limelight", Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 
