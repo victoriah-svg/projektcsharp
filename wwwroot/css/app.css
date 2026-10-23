@@ -19,6 +19,7 @@ body {
 
 body {
     min-height: 100vh;
+    
 }
 
 
@@ -77,5 +78,28 @@ body {
 .errorMsg {
     color: red;
     font-weight: bold;
+}
+
+/*Homesidan*/
+
+#heroDiv{
+    max-width: 1200px;
+    display: grid;
+    width: 100%;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+#heroDiv img{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0.8;
+}
+
+@media screen and (min-width: 1200px) {
+    #heroDiv{
+    padding-top: 24px;
+}
 }
     
