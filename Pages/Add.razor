@@ -8,43 +8,7 @@
 <!--<p>@myToDo.WriteToDo()</p>-->
 <!--testa lägg in input och knapp - med databinding eller eventhandler som sätter värdena -->
 
-<h2>Hem och fritid</h2>
-<ul>
-    @foreach (var todo in todos)
-    
-    {
-        if(todo.Category == "Hem och fritid")
-        {
-             <li> <input type="checkbox" @bind="todo.Done"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
-             //binder värdet av checkboxen till todo.Done - ibockad är true , urbockad blir false
-        }
-       
-    }   
-</ul>
-<h2>Skola</h2>
-<ul>
-    @foreach (var todo in todos)
-    
-    {
-        if(todo.Category == "Skola")
-        {
-             <li><input type="checkbox" @bind="todo.Done"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
-        }
-       
-    }   
-</ul>
-<h2>Jobb</h2>
-<ul>
-    @foreach (var todo in todos)
-    
-    {
-        if(todo.Category == "Jobb")
-        {
-             <li><input type="checkbox" @bind="todo.Done"> @todo.Task    @todo.Priority @todo.Done @todo.Category</li>
-        }
-       
-    }   
-</ul>
+
 
 
 <input @bind="newTask">
