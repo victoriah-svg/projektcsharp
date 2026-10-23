@@ -95,6 +95,10 @@
 
     private void deleteTodo(int index)
     {
-        Console.WriteLine(index);
+        //tar bort todo med index som skickats med från listan
+        todos.RemoveAt(index);
+        Storage.Save(todos); //sparar listan
+        
+        
     }
 }
