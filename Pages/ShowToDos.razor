@@ -25,7 +25,8 @@
         {
             int index = todos.IndexOf(todo);
 
-            <li> <input type="checkbox" @bind="todo.Done">@index; @todo.Task @todo.Priority @todo.Done @todo.Category</li>
+            <li> <input type="checkbox" @bind="todo.Done">@index; @todo.Task @todo.Priority 
+            @todo.Done @todo.Category<i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="()=>deleteTodo(index)"></i></li>
             //binder värdet av checkboxen till todo.Done - ibockad är true , urbockad blir false
         }
        
@@ -39,7 +40,8 @@
         if (todo.Category == "Skola")
         {
             int index = todos.IndexOf(todo);
-            <li><input type="checkbox" @bind="todo.Done">@index; @todo.Task @todo.Priority @todo.Done @todo.Category</li>
+            <li><input type="checkbox" @bind="todo.Done">@index; @todo.Task @todo.Priority 
+            @todo.Done @todo.Category <i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="()=>deleteTodo(index)"></i></li>
         }
        
     }
@@ -51,9 +53,11 @@
     {
         if (todo.Category == "Jobb")
         {
+            <!--skriv ut todo med olika fält. ikonen trashcan har onclick-event som kallar 
+            på metod deleteTodo och skickar med index som argument-->
             int index = todos.IndexOf(todo);
             <li><input type="checkbox" @bind="todo.Done" @onclick="changeStatus">@index; @todo.Task @todo.Priority @todo.Done
-                @todo.Category</li>
+                @todo.Category <i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="()=>deleteTodo(index)"></i></li>
             }
        
         }
@@ -64,7 +68,7 @@
     private string message = "";
     List<ToDo> todos = new List<ToDo>();
 
-    
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -85,5 +89,12 @@
             Console.WriteLine($"{todo.Task} {todo.Done}");
         }
         //Storage.Save(todos);
+    }
+
+
+
+    private void deleteTodo(int index)
+    {
+        Console.WriteLine(index);
     }
 }
