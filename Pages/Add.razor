@@ -3,29 +3,31 @@
 @using todos
 @inject ToDoStorage Storage /*injicerar klassen för att kunna anropa metoder Load och Save*/
 <PageTitle>Add ToDo</PageTitle>
-<h1>Lägg till ny ToDo</h1>
+<div id=addMainWrapper>
+    <h1>Lägg till ny ToDo</h1>
 
-<!--<p>@myToDo.WriteToDo()</p>-->
-<!--testa lägg in input och knapp - med databinding eller eventhandler som sätter värdena -->
+    <form>
+        <label for="task">Beskriv uppgift:</label>
+        <input @bind="newTask" type="text" id="task" name="task">
+        <div class="errorMsg">@errorMsg</div>
+    
+        <label for="priority">Prioritet 1-3 (1 = högst, 3 = lägst):</label>
+        <select id="priority" name="priority" @bind="newPriority">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
 
+        <label for="category">Välj kategori:</label>
+        <select id="category" name="category" @bind="newCategory">
+            <option value="Hem och fritid">Hem och fritid</option>
+            <option value="Jobb">Jobb</option>
+            <option value="Skola">Skola</option>
+        </select>
 
-
-
-<input @bind="newTask">
-<p class="errorMsg">@errorMsg</p>
-<select id="priority" name="priority" @bind="newPriority">
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-</select>
-
-<select id="category" name="category" @bind="newCategory">
-  <option value="Hem och fritid">Hem och fritid</option>
-  <option value="Jobb">Jobb</option>
-  <option value="Skola">Skola</option>
-</select>
-
-<button @onclick="AddTodo">Add todo</button>
+        <button @onclick="AddTodo" type="button">Spara ToDo <i class="fa-solid fa-plus fa-lg"></i></button>
+    </form>
+</div>
 
 @code {
 
@@ -47,9 +49,9 @@
     protected override async Task OnInitializedAsync()
     {
         List<ToDo> todosToSave = await Storage.Load();
-        foreach(ToDo todo in todosToSave)
+        foreach (ToDo todo in todosToSave)
         {
-            todos.Add(new ToDo { Task = todo.Task, Priority = todo.Priority , Done = todo.Done, Category = todo.Category});
+            todos.Add(new ToDo { Task = todo.Task, Priority = todo.Priority, Done = todo.Done, Category = todo.Category });
         }
         
     }
@@ -60,12 +62,14 @@
         if (string.IsNullOrWhiteSpace(newTask))
         {
             errorMsg = "Du måste fylla i uppgift";
-        }else if(newTask.Length > 30){
+        }
+        else if (newTask.Length > 30)
+        {
             errorMsg = "Uppgiftsbeskrivning får inte vara längre än 30 karaktärer";
         }
         else
         {
-            todos.Add(new ToDo { Task = newTask, Priority = newPriority , Done = done, Category = newCategory});
+            todos.Add(new ToDo { Task = newTask, Priority = newPriority, Done = done, Category = newCategory });
             Storage.Save(todos); //anropar Save från ToDoStorage som anropar async js-funktion för att spara i localStorage
             newTask = ""; //rensar fältet newTask
             newPriority = 1; //sätter tillbaka värdet på priority att vara 1 som default
