@@ -271,8 +271,23 @@ button {
 #showMainWrapper {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto  auto 1fr;
+    row-gap: 10px;
+}
 
+#antalSection{
+    display: flex;
+    flex-direction: row;
+    background-color: #1F4547;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    color: white;
+    width: 283px;
+}
+
+#antalSection img{
+    width: 50px;
+    border-radius: 5px;
 }
 
 #tablesDiv {

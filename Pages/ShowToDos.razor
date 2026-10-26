@@ -1,12 +1,17 @@
 @page "/show-ToDos"
 @using System.Data.SqlTypes
 @using System.Reflection.Metadata
+@using System.Linq
 @inject IJSRuntime JS
 @using todos
 @inject ToDoStorage Storage
 <PageTitle>Show ToDo</PageTitle>
 <div id="showMainWrapper">
     <h1>Dina ToDo's</h1>
+    <section id="antalSection">
+        <img src="/Images/list.jpg" alt="">
+        <p>Antal todos: @todos.Count(todo => todo.Done == false)</p>
+    </section>
     <div id="tablesDiv">
         <table>
             <colgroup>
