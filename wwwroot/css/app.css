@@ -41,11 +41,11 @@ h1 {
     font-size: 2rem;
 }
 
-h2{
+h2 {
     font-size: 1.25rem;
 }
 
-h3{
+h3 {
     font-size: 1.125rem;
 }
 
@@ -145,7 +145,7 @@ button {
     display: grid;
     justify-content: center;
     text-align: center;
-    
+
 }
 
 #homeMainWrapper p {
@@ -268,14 +268,14 @@ button {
 }
 
 /*----Show-all-sida----*/
-#showMainWrapper{
+#showMainWrapper {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
-    
+
 }
 
-#tablesDiv{
+#tablesDiv {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -287,7 +287,7 @@ button {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-table{
+table {
     text-align: left;
     padding: 20px;
     width: 100%;
@@ -298,47 +298,49 @@ table{
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-table i:hover, .checkbox {
-   cursor: pointer; 
+table i:hover,
+.checkbox {
+    cursor: pointer;
 }
 
-.checkbox{
+.checkbox {
     width: 25px;
     height: 25px;
 }
 
-table:hover{
+table:hover {
     box-shadow: none;
 }
 
-table th, table td{
+table th,
+table td {
     padding: 12px 8px;
 }
 
-tbody tr:hover{
+tbody tr:hover {
     background-color: #1f454741;
 }
 
 .task-column {
-    width: 55%;
+    width: 40%;
 }
 
 .done-column {
-    width: 15%;
+    width: 20%;
 }
 
 .delete-column {
-    width: 15%;
+    width: 20%;
 }
 
 .priority-column {
-    width: 15%;
+    width: 20%;
 }
 
 
 
-.rubrik{
-    
+.rubrik {
+
     text-decoration: underline;
     font-size: 1.2rem;
     font-weight: 500;
@@ -386,6 +388,46 @@ tbody tr:hover{
     #addMainWrapper form {
         width: 100%;
     }
+
+    /*----Show-all-sidan----*/
+    #tablesDiv {
+        padding: 10px;
+    }
+
+    table {
+        padding: 10px;
+        width: 100%;
+    }
+
+    thead th{
+        font-size: 0.8rem;
+    }
+
+    tbody{
+        font-size: 0.8rem;
+    }
+
+    table th,
+    table td {
+        padding: 12px 8px;
+    }
+
+    .task-column {
+        width: 40%;
+    }
+
+    .done-column {
+        width: 20%;
+    }
+
+    .delete-column {
+        width: 20%;
+    }
+
+    .priority-column {
+        width: 20%;
+    }
+
 
 }
 
