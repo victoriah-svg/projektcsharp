@@ -117,10 +117,6 @@ button {
     text-decoration: underline;
 }
 
-.errorMsg {
-    color: red;
-    font-weight: bold;
-}
 
 /*----Homesidan----*/
 
@@ -265,6 +261,19 @@ button {
 #addMainWrapper button:hover {
     box-shadow: none;
     text-decoration: underline;
+}
+
+.errorMsg {
+    color: red;
+    font-weight: bold;
+}
+
+/*Valideringstext*/
+.validationMsg{
+    color: green;
+    font-weight: bold;
+    justify-self: center;
+    text-align: center;
 }
 
 /*----Show-all-sida----*/

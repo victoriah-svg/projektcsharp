@@ -8,7 +8,7 @@
 
     <form>
         <label for="task">Beskriv uppgift:</label>
-        <input @bind="newTask" type="text" id="task" name="task">
+        <input @bind="newTask" @onclick="changeValidationMsg" type="text" id="task" name="task">
         <div class="errorMsg">@errorMsg</div>
     
         <label for="priority">Prioritet 1-3 (1 = högst, 3 = lägst):</label>
@@ -24,6 +24,7 @@
             <option value="Jobb">Jobb</option>
             <option value="Skola">Skola</option>
         </select>
+         <div class="validationMsg">@validationMsg</div>
 
         <button @onclick="AddTodo" type="button">Spara ToDo <i class="fa-solid fa-plus fa-lg"></i></button>
     </form>
@@ -37,6 +38,8 @@
 
     string errorMsg = "";
     int newPriority = 1;
+
+    string validationMsg = "";
 
     bool done = false; //sätter till false för vill att done ska vara false när en todo läggs till
 
@@ -53,19 +56,21 @@
         {
             todos.Add(new ToDo { Task = todo.Task, Priority = todo.Priority, Done = todo.Done, Category = todo.Category });
         }
-        
+
     }
 
     private async Task AddTodo(MouseEventArgs args)
     {
-        
+
         if (string.IsNullOrWhiteSpace(newTask))
         {
             errorMsg = "Du måste fylla i uppgift";
+            validationMsg = "";
         }
         else if (newTask.Length > 30)
         {
             errorMsg = "Uppgiftsbeskrivning får inte vara längre än 30 karaktärer";
+            validationMsg = "";
         }
         else
         {
@@ -75,9 +80,16 @@
             newPriority = 1; //sätter tillbaka värdet på priority att vara 1 som default
             newCategory = "Hem och fritid"; //sätter tillbaka defaultvärde på kategori
             errorMsg = "";
-           
+            validationMsg ="ToDo tillagd!"; //lägger till validation message
+
         }
 
-        
+
+    }
+
+//Metod som rensar innehåll i validation message 
+    private void changeValidationMsg()
+    {
+         validationMsg = "";
     }
 }
