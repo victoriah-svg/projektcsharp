@@ -1,6 +1,24 @@
-﻿
-<nav class="nav-menu">
-    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">Hem</NavLink>
-    <NavLink class="nav-link" href="add">Lägg till ToDo</NavLink>
-    <NavLink class="nav-link" href="show-ToDos">Visa alla ToDo</NavLink>
-</nav>
+﻿<div class="navigation">
+    <!--anropar metoden ToggleMenu när hamburgersymbol klickas-->
+    <div id="hamburger" @onclick="ToggleMenu">
+        <i class="fa-solid fa-bars fa-5x"></i>
+    </div>
+
+    <!--Lägger till open i class nav-menu om menuOpen är true och annars inget
+    för att kunna styla öppen och stängd meny med css-->
+    <nav class="nav-menu @(menuOpen ? "open" : "")">
+        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">Hem</NavLink>
+        <NavLink class="nav-link" href="add">Lägg till ToDo</NavLink>
+        <NavLink class="nav-link" href="show-ToDos">Visa alla ToDo</NavLink>
+    </nav>
+</div>
+
+@code {
+    private bool menuOpen = false;
+
+//Metod som togglar mellan true och false för menuOpen
+    private void ToggleMenu()
+    {
+        menuOpen = !menuOpen;
+    }
+}

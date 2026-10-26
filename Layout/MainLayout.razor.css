@@ -25,7 +25,7 @@ header a{
     
 }
 
-
+/*
 #hamburger i {
     width: 150px;
     color: #1F4547;
@@ -36,7 +36,7 @@ header a{
     grid-area: 2/2/3/3;
     justify-self: right;
 }
-
+*/
 
 header img {
     border-radius: 50%;
@@ -53,7 +53,8 @@ header img:hover {
 /*-----------Mobilläge--------------*/
 
 @media screen and (max-width: 600px) {
-    #hamburger {
+   /* #hamburger {
         display: block;
-    }
+    }*/
+
 }

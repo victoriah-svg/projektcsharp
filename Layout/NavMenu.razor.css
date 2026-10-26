@@ -9,12 +9,36 @@
     grid-area: 2/2/3/3;
 }
 
+#hamburger i {
+    width: 150px;
+    color: #1F4547;
+}
+
+#hamburger {
+    display: none;
+    grid-area: 2/2/3/3;
+    justify-self: right;
+}
+
 /*-----------Mobilläge--------------*/
 
 @media screen and (max-width: 600px) {
  .nav-menu {
     display: none;
+    flex-direction: column;
  }
+ 
+
+    .nav-menu.open {
+        display: flex;
+    }
+
+  
+    #hamburger {
+        display: block;
+    }
+
+
 }
 
 
