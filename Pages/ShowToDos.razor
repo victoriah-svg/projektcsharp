@@ -7,65 +7,113 @@
 <PageTitle>Show ToDo</PageTitle>
 <h1>Dina ToDo's</h1>
 
+<table>
+    <thead>
+        <tr>
+            <th colspan="4">Hem och fritid</th>
+        </tr>
+        <tr>
+            <th>Att göra:</th>
+            <th>Klar?</th>
+            <th>Radera</th>
+            <th>Prio</th>
+        </tr>
+    </thead>
 
-<h3>Test av localStorage</h3>
-
-<!--<button @onclick="Save">Spara</button>-->
-<!--<button @onclick="Load">Hämta</button>-->
-
-<p>@message</p>
-<h2>Hem och fritid</h2>
-
-<ul>
-    @foreach (var todo in todos)
+    <tbody>
+        @foreach (var todo in todos)
     
     
-    {
-        if (todo.Category == "Hem och fritid")
         {
-            int index = todos.IndexOf(todo);
+            if (todo.Category == "Hem och fritid")
+            {
+                int index = todos.IndexOf(todo);
 
-            <li> <input type="checkbox" @bind="todo.Done" @onclick="()=>changeStatus(index)">@index; @todo.Task @todo.Priority 
-            @todo.Done @todo.Category<i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="()=>deleteTodo(index)"></i></li>
-            //binder värdet av checkboxen till todo.Done - ibockad är true , urbockad blir false
-        }
-       
-    }
-</ul>
-<h2>Skola</h2>
-<ul>
-    @foreach (var todo in todos)
-    
-    {
-        if (todo.Category == "Skola")
-        {
-            int index = todos.IndexOf(todo);
-            <li><input type="checkbox" @bind="todo.Done" @onclick="()=>changeStatus(index)">@index; @todo.Task @todo.Priority 
-            @todo.Done @todo.Category <i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="()=>deleteTodo(index)"></i></li>
-        }
-       
-    }
-</ul>
-<h2>Jobb</h2>
-<ul>
-    @foreach (var todo in todos)
-    
-    {
-        if (todo.Category == "Jobb")
-        {
-            <!--skriv ut todo med olika fält. ikonen trashcan har onclick-event som kallar 
-            på metod deleteTodo och skickar med index som argument-->
-            int index = todos.IndexOf(todo);
-            <li><input type="checkbox" @bind="todo.Done" @onclick="()=> changeStatus(index)">@index; @todo.Task @todo.Priority @todo.Done
-                @todo.Category <i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="()=>deleteTodo(index)"></i></li>
+                <tr>
+                    <td>@todo.Task</td>
+                    <td><input type="checkbox" @bind="todo.Done" @onclick="() => changeStatus(index)"></td>
+                    <td><i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="() => deleteTodo(index)"></i></td>
+                    <td>@todo.Priority</td>
+                </tr>
+                //binder värdet av checkboxen till todo.Done - ibockad är true , urbockad blir false
             }
        
         }
-    </ul>
+    </tbody>
+
+</table>
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="4">Skola</th>
+        </tr>
+        <tr>
+            <th>Att göra:</th>
+            <th>Klar?</th>
+            <th>Radera</th>
+            <th>Prio</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var todo in todos)
+    
+        {
+            if (todo.Category == "Skola")
+            {
+                int index = todos.IndexOf(todo);
+                
+                <tr>
+                    <td>@todo.Task</td>
+                    <td><input type="checkbox" @bind="todo.Done" @onclick="() => changeStatus(index)"></td>
+                    <td><i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="() => deleteTodo(index)"></i></td>
+                    <td>@todo.Priority</td>
+                </tr>
+            }
+       
+        }
+    </tbody>
+</table>
+
+<table>
+    
+    <thead>
+        <tr>
+            <th colspan="4">Jobb</th>
+        </tr>
+        <tr>
+            <th>Att göra:</th>
+            <th>Klar?</th>
+            <th>Radera</th>
+            <th>Prio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in todos)
+    
+        {
+            if (todo.Category == "Jobb")
+            {
+                <!--skriv ut todo med olika fält. ikonen trashcan har onclick-event som kallar 
+            på metod deleteTodo och skickar med index som argument-->
+                int index = todos.IndexOf(todo);
+                
+                <tr>
+                    <td>@todo.Task</td>
+                    <td><input type="checkbox" @bind="todo.Done" @onclick="() => changeStatus(index)"></td>
+                    <td><i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="() => deleteTodo(index)"></i></td>
+                    <td>@todo.Priority</td>
+                </tr>
+            }
+       
+        }
+    </tbody>
+</table>
 
 @code {
     // List<ToDo> todos = new List<ToDo>();
-    private string message = "";
+   
     List<ToDo> todos = new List<ToDo>();
   
 
