@@ -145,6 +145,7 @@ button {
     display: grid;
     justify-content: center;
     text-align: center;
+    
 }
 
 #homeMainWrapper p {
@@ -264,6 +265,83 @@ button {
 #addMainWrapper button:hover {
     box-shadow: none;
     text-decoration: underline;
+}
+
+/*----Show-all-sida----*/
+#showMainWrapper{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    
+}
+
+#tablesDiv{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    row-gap: 50px;
+    background-color: #988585;
+    justify-items: center;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+table{
+    text-align: left;
+    padding: 20px;
+    width: 100%;
+    background-color: #FFFF;
+    border-radius: 5px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+table i:hover, .checkbox {
+   cursor: pointer; 
+}
+
+.checkbox{
+    width: 25px;
+    height: 25px;
+}
+
+table:hover{
+    box-shadow: none;
+}
+
+table th, table td{
+    padding: 12px 8px;
+}
+
+tbody tr:hover{
+    background-color: #1f454741;
+}
+
+.task-column {
+    width: 55%;
+}
+
+.done-column {
+    width: 15%;
+}
+
+.delete-column {
+    width: 15%;
+}
+
+.priority-column {
+    width: 15%;
+}
+
+
+
+.rubrik{
+    
+    text-decoration: underline;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 /*-----------Mobilläge--------------*/
