@@ -226,9 +226,16 @@ button {
 #addMainWrapper {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr auto;
     gap: 5%;
 
+}
+
+#addMainWrapper a{
+    color: #1F4547;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 20px;
 }
 
 #addMainWrapper form {
@@ -374,7 +381,7 @@ tbody tr:hover {
 
 @media screen and (max-width: 600px) {
 
-    
+
 
     /*----fontsizes----*/
     h1 {
