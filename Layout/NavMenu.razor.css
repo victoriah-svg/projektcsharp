@@ -26,6 +26,27 @@
     justify-self: center;
 }
 
+/*----------tabletläge---------------*/
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .nav-menu {
+    display: none;
+    flex-direction: column;
+ }
+ 
+
+    .nav-menu.open {
+        display: flex;
+        grid-area: 2/1/3/3;
+        justify-self: start;
+        margin-left: 10%;
+    }
+
+  
+    #hamburger {
+        display: block;
+    }
+}
+
 /*-----------Mobilläge--------------*/
 
 @media screen and (max-width: 600px) {
