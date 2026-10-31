@@ -6,8 +6,6 @@
     width: 100%;
     max-width: 1200px; 
     margin: 0 auto;
-    /*padding: 24px;*/
-   /* padding-bottom: 24px;*/
     padding: 0px 24px 24px 24px
     
    
@@ -29,18 +27,6 @@ header a{
     grid-area: 2/2/3/3;
 }
 
-/*
-#hamburger i {
-    width: 150px;
-    color: #1F4547;
-}
-
-#hamburger {
-    display: none;
-    grid-area: 2/2/3/3;
-    justify-self: right;
-}
-*/
 
 header img {
     border-radius: 50%;
@@ -54,13 +40,3 @@ header img:hover {
     box-shadow: none;
 }
 
-
-
-/*-----------Mobilläge--------------*/
-
-@media screen and (max-width: 600px) {
-   /* #hamburger {
-        display: block;
-    }*/
-
-}

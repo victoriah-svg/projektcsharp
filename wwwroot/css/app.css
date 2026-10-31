@@ -2,11 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Limelight&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-/*:root {
-    font-family: Arial, sans-serif;
-    color: #222;
-    background: #fff;
-}*/
 
 * {
     box-sizing: border-box;
@@ -24,7 +19,7 @@ body {
     font-size: 1rem;
 }
 
-/*Typsnitt och fontsizes*/
+/*--Typsnitt och fontsizes--*/
 #welcomeTxt {
     font-family: "Limelight", Arial, Helvetica, sans-serif;
 }
@@ -65,7 +60,7 @@ button {
 
 
 
-/*Gömma error-diven*/
+/*Gömma error-diven (denna styling var med i sample-projektmallen*/
 #blazor-error-ui {
     color-scheme: light only;
     background: lightyellow;

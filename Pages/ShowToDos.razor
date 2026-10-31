@@ -4,15 +4,19 @@
 @using System.Linq
 @inject IJSRuntime JS
 @using todos
-@inject ToDoStorage Storage
+@inject ToDoStorage Storage /*injicerar en instans av klassen ToDoStorage för att kunna anropa metoder Load och Save*/
 <PageTitle>Show ToDo</PageTitle>
+
 <div id="showMainWrapper">
     <h1>Dina ToDo's</h1>
+    <!--Section som visar antal ej avklarade todos-->
     <section id="antalSection">
         <img src="/Images/list.jpg" alt="">
+        <!--Räknar antal todos där todo.Done är false och skriver ut-->
         <p>Antal ToDo's: @todos.Count(todo => todo.Done == false)</p>
     </section>
     <div id="tablesDiv">
+        <!--Tabell för kategori Hem och fritid-->
         <table id="homeTable">
             <colgroup>
                 <col class="task-column">
@@ -33,21 +37,26 @@
             </thead>
 
             <tbody>
+                <!--Loopar igenom listan med ToDo, kontrollerar om 
+                kategori är Hem och fritid och skriver ut-->
                 @foreach (var todo in todos)
     
     
                 {
                     if (todo.Category == "Hem och fritid")
                     {
-                        int index = todos.IndexOf(todo);
+                        int index = todos.IndexOf(todo); <!--index för todo-->
 
                         <tr>
                             <td>@todo.Task</td>
-                            <td><input type="checkbox" @bind="todo.Done" @onclick="() => changeStatus(index)" class="checkbox"></td>
+                            <!--klick på checkbox anropar metod för att ändra status på Done, skickar med index-->
+                            <td><input type="checkbox" @bind="todo.Done" @onclick="() => changeStatus(index)" class="checkbox">
+                            </td>
+                            <!--Klick på delete-ikon anropar metoden deleteTodo och skickar med index-->
                             <td><i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="() => deleteTodo(index)"></i></td>
                             <td>@todo.Priority</td>
                         </tr>
-                        //binder värdet av checkboxen till todo.Done - ibockad är true , urbockad blir false
+                        
                     }
        
                 }
@@ -55,6 +64,7 @@
 
         </table>
 
+        <!--Tabell för kategori skola-->
         <table id="schoolTable">
             <colgroup>
                 <col class="task-column">
@@ -75,6 +85,8 @@
             </thead>
 
             <tbody>
+                <!--Loopar igenom listan med ToDo, kontrollerar om 
+                kategori är Skola och skriver ut-->
                 @foreach (var todo in todos)
     
                 {
@@ -84,7 +96,10 @@
                 
                         <tr>
                             <td>@todo.Task</td>
-                            <td><input type="checkbox" @bind="todo.Done" @onclick="() => changeStatus(index)" class="checkbox"></td>
+                            <!--klick på checkbox anropar metod för att ändra status på Done, skickar med index-->
+                            <td><input type="checkbox" @bind="todo.Done" @onclick="() => changeStatus(index)" class="checkbox">
+                            </td>
+                            <!--Klick på delete-ikon anropar metoden deleteTodo och skickar med index-->
                             <td><i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="() => deleteTodo(index)"></i></td>
                             <td>@todo.Priority</td>
                         </tr>
@@ -94,6 +109,7 @@
             </tbody>
         </table>
 
+        <!--Tabell för kategori jobb-->
         <table id="jobTable">
             <colgroup>
                 <col class="task-column">
@@ -114,18 +130,22 @@
                 </tr>
             </thead>
             <tbody>
+                <!--Loopar igenom listan med ToDo, kontrollerar om 
+                kategori är Jobb och skriver ut-->
                 @foreach (var todo in todos)
     
                 {
                     if (todo.Category == "Jobb")
                     {
-                        <!--skriv ut todo med olika fält. ikonen trashcan har onclick-event som kallar 
-            på metod deleteTodo och skickar med index som argument-->
+                        
                         int index = todos.IndexOf(todo);
                 
                         <tr>
                             <td>@todo.Task</td>
-                            <td><input type="checkbox" @bind="todo.Done" @onclick="() => changeStatus(index)" class="checkbox"></td>
+                            <!--klick på checkbox anropar metod för att ändra status på Done, skickar med index-->
+                            <td><input type="checkbox" @bind="todo.Done" @onclick="() => changeStatus(index)" class="checkbox">
+                            </td>
+                            <!--Klick på delete-ikon anropar metoden deleteTodo och skickar med index-->
                             <td><i class="fa-solid fa-trash-can fa-xl" id="@index" @onclick="() => deleteTodo(index)"></i></td>
                             <td>@todo.Priority</td>
                         </tr>
@@ -137,16 +157,17 @@
     </div>
 </div>
 @code {
-    // List<ToDo> todos = new List<ToDo>();
-   
+   //Lista som kan innehålla ToDo-objekt
     List<ToDo> todos = new List<ToDo>();
   
-
-
-
+    
+    //Metod som anropar när komponent initialiseras
     protected override async Task OnInitializedAsync()
     {
+        //Anropar metoden Load från ToDoStorage och sparar i lista med ToDo-objekt
         List<ToDo> allToDos = await Storage.Load();
+
+        //Loopar igenom listan och lägger till dessa i den globala listan todos
         @foreach (ToDo todo in allToDos)
         {
             todos.Add(new ToDo { Task = todo.Task, Priority = todo.Priority, Done = todo.Done, Category = todo.Category });
@@ -155,6 +176,8 @@
     }
 
 
+    //Metod för att ändra status på Done för en metod vars index skickats med
+    //Anropas när checkbox klickas
     private void changeStatus(int index)
     {
         //ändrar bool Done för todo med specifikt index till true eller false (det den inte var innan)
@@ -163,7 +186,8 @@
     }
 
 
-
+    //Metod som raderar en todo med ett visst index
+    //Anropas när delete-ikon klickats 
     private void deleteTodo(int index)
     {
         //tar bort todo med index som skickats med från listan

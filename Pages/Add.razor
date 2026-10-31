@@ -1,11 +1,12 @@
 @page "/add"
 @using System.Data.SqlTypes
 @using todos
-@inject ToDoStorage Storage /*injicerar klassen för att kunna anropa metoder Load och Save*/
+@inject ToDoStorage Storage /*injicerar en instans av klassen ToDoStorage för att kunna anropa metoder Load och Save*/
 <PageTitle>Add ToDo</PageTitle>
 <div id=addMainWrapper>
     <h1>Lägg till ny ToDo</h1>
-
+    <!--Formulär som använder eventhandlers för att anropa metoder vid interaktion samt databinding 
+    för att läsa input-->
     <form>
         <label for="task">Beskriv uppgift:</label>
         <input @bind="newTask" @onclick="changeValidationMsg" type="text" id="task" name="task">
@@ -32,27 +33,38 @@
 </div>
 
 @code {
-
+    //Lista som kan innehålla ToDo-objekt
     List<ToDo> todos = new List<ToDo>();
 
+    /*VARIABLER SOM ANVÄNDS FÖR DATABINDING - 
+    läsa ut och ändra värden från formulär samt felmeddelanden och valideringsmeddelanden */
+
+    //sträng som används för att Läsa Task ur formuläret
     string newTask = "";
 
+    //Felmeddelandesträng
     string errorMsg = "";
+
+    //int för att läsa prioritet ur formuläret, sätter defaultvärdet till 1
     int newPriority = 1;
 
+    // sträng som används för valideringsmeddelande när ny to-do lagts till
     string validationMsg = "";
 
+    //boolean för att skicka med värde för Done för en ToDo
     bool done = false; //sätter till false för vill att done ska vara false när en todo läggs till
 
+    //sträng för att läsa värde för Category för en ToDo, sätter default till Hem och fritid
     string newCategory = "Hem och fritid";
 
-    // ToDo myToDo = new ToDo (task: "handla", priority: 1, done: true, category: "hem och fritid");
-    //Lägg till metod AddToDo som triggas när knappen klickas - men först kontrollerar att värden ej är tomma
-    //just nu skriv bara ut värdena på skärmen - senare anropa save med listan av todos
-
+    
+    //Metod som anropar när komponent initialiseras
     protected override async Task OnInitializedAsync()
     {
+        //Anropar metoden Load från ToDoStorage och sparar i lista med ToDo-objekt
         List<ToDo> todosToSave = await Storage.Load();
+        
+        //Loopar igenom listan och lägger till dessa i den globala listan todos 
         foreach (ToDo todo in todosToSave)
         {
             todos.Add(new ToDo { Task = todo.Task, Priority = todo.Priority, Done = todo.Done, Category = todo.Category });
@@ -60,27 +72,34 @@
 
     }
 
+    //Metod som anropas när knappen för att spara en todo klickas 
     private async Task AddTodo(MouseEventArgs args)
     {
 
+        //Kontroll om input för Task är tom eller whitespace 
         if (string.IsNullOrWhiteSpace(newTask))
         {
+            //Skriver ut felmeddelande
             errorMsg = "Du måste fylla i uppgift";
+            //Tömmer valideringsmeddelande
             validationMsg = "";
         }
-        else if (newTask.Length > 30)
+        else if (newTask.Length > 30) //om input för Task är mer än 30 karaktärer
         {
+            //Skriver ut ett annat felmeddelande
             errorMsg = "Uppgiftsbeskrivning får inte vara längre än 30 karaktärer";
+            //Tömmer valideringsmeddelande
             validationMsg = "";
         }
-        else
+        else //annars - om allt korrekt ifyllt
         {
+            //lägg till ny ToDo i listan med input som skrivits
             todos.Add(new ToDo { Task = newTask, Priority = newPriority, Done = done, Category = newCategory });
             Storage.Save(todos); //anropar Save från ToDoStorage som anropar async js-funktion för att spara i localStorage
             newTask = ""; //rensar fältet newTask
             newPriority = 1; //sätter tillbaka värdet på priority att vara 1 som default
             newCategory = "Hem och fritid"; //sätter tillbaka defaultvärde på kategori
-            errorMsg = "";
+            errorMsg = ""; //resnar felmeddelande
             validationMsg ="ToDo tillagd!"; //lägger till validation message
 
         }
@@ -88,7 +107,7 @@
 
     }
 
-//Metod som rensar innehåll i validation message 
+//Metod som rensar innehåll i validation message - anropas när användare klickar på input för Task
     private void changeValidationMsg()
     {
          validationMsg = "";
